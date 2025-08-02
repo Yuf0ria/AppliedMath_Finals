@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Handle horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
