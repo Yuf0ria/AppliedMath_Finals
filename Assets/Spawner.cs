@@ -1,37 +1,106 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
     //Variables, Serializing just in case I have time to create a save or load option
-    [SerializeField] GameObject Spawned; 
-    [SerializeField] GameObject[] tilesprefab;
-    //size of the spawnBox;
-    [SerializeField] float X = 1f, Y = 1f;
-    //Sereperate float for the cooldown
-    [SerializeField] float Cooldown = 10f;
-    private float spawnTime;
+    public Tilemap Road;
+    private GameObject[] Spawned;
+    private List<Vector3> validSpawnPoints = new List<Vector3>();
+    private List<GameObject> spawnEnemies = new List<GameObject>(); // Only have 1 enemy
+    private bool isSpawning = false;
+    public float Cooldown = 0.5f;
+    public int maxObjects = 5;//Limit of Enemies
+
+
     void Start()
     {
-        spawnTime = Cooldown;
+        ValidCells();
+        
     }
 
     void Update()
     {
-        if (spawnTime > 0) spawnTime -= Time.deltaTime;
 
-        if(spawnTime <= 0)
+    }
+
+    private int ActiveObjectCount()
+    {
+        spawnEnemies.RemoveAll(item => item == null);
+        return spawnEnemies.Count;
+    }
+
+    private IEnumerator SpawnObjectsifNeeded()
+    {
+        isSpawning = true;
+        while (ActiveObjectCount() < maxObjects)
         {
-            Spawn();
-            spawnTime = Cooldown;
+            //Spawn
+            yield return new WaitForSeconds(Cooldown);
+        }
+        isSpawning = false;
+    }
+
+    // Check if there is an enemy in this position
+    private bool PosHasEnemy(Vector3 positionToCheck)
+    {
+        return spawnEnemies.Any(checkObj => checkObj && Vector3.Distance(checkObj.transform.position, positionToCheck) < 1.0f); //Checking Every pass of unit
+    }
+
+    private ObjectType RandomObjectType
+
+    private void SpawnEnemy()
+    {
+        if (validSpawnPoints.Count == 0) return;
+
+        Vector3 spawnPos = Vector3.zero;
+        bool validPosfound = false;
+
+        while(!validPosfound && validSpawnPoints.Count > 0)
+        {
+            int randomIndex = Random.Range(0, validSpawnPoints.Count);
+            Vector3 potentialPos = validSpawnPoints[randomIndex];
+            Vector3 leftPos = potentialPos + Vector3.left;
+            Vector3 rightPos = potentialPos + Vector3.right;
+
+            if(!PosHasEnemy(leftPos) && !PosHasEnemy(rightPos))
+            {
+                spawnPos = potentialPos;
+                validPosfound = true;
+            }
+            validSpawnPoints.RemoveAt(randomIndex);
+        }
+
+        if (validPosfound)
+        {
+             ObjectField
         }
     }
 
-    void Spawn()
+    private void ValidCells()
     {
-        float xPos = Random.Range(-X, X) + transform.position.x;
-        float yPos = Random.Range(-Y, Y) + transform.position.y;
+        validSpawnPoints.Clear();//every start map is cleared
+        BoundsInt boundsInt = Road.cellBounds;
+        TileBase[] allTiles = Road.GetTilesBlock(boundsInt);
+        Vector3 start = Road.CellToWorld(new Vector3Int(boundsInt.xMin, boundsInt.yMin, 0));
 
-        Vector3 spawnPosition = new Vector3(xPos, yPos, 0);
-        Instantiate(Spawned, spawnPosition, Quaternion.identity);
+        //Checks which cells are valid to spawn
+        for (int x = 0; x < boundsInt.size.x; x++)
+        {
+            for (int y = 0; y < boundsInt.size.y; y++)
+            {
+                TileBase tile = allTiles[x + y * boundsInt.size.x];
+                if(tile != null)
+                {
+                    Vector3 place = start + new Vector3(x + 0.5f, y + 2f, 0);
+                    validSpawnPoints.Add(place);
+                }
+            }
+        }
     }
 }
