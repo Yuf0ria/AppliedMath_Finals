@@ -8,9 +8,12 @@ using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
-    //Variables, Serializing just in case I have time to create a save or load option
+    public enum ObjectType { Enemy, SmallEnemy, BigEnemy};
+   
     public Tilemap Road;
-    private GameObject[] Spawned;
+    public GameObject[] Spawned; //0 - enemy, 1 - small, 2 - big
+    public float BigEnemyProbability = 0.2f; //20% chance
+    public float EnemyProbability = 0.1f;
     private List<Vector3> validSpawnPoints = new List<Vector3>();
     private List<GameObject> spawnEnemies = new List<GameObject>(); // Only have 1 enemy
     private bool isSpawning = false;
@@ -21,12 +24,15 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         ValidCells();
-        
+        StartCoroutine(SpawnObjectsifNeeded());
     }
 
     void Update()
     {
-
+        if(!isSpawning && ActiveObjectCount() < maxObjects)
+        {
+            StartCoroutine(SpawnObjectsifNeeded());
+        }
     }
 
     private int ActiveObjectCount()
@@ -40,7 +46,7 @@ public class Spawner : MonoBehaviour
         isSpawning = true;
         while (ActiveObjectCount() < maxObjects)
         {
-            //Spawn
+            SpawnEnemy();
             yield return new WaitForSeconds(Cooldown);
         }
         isSpawning = false;
@@ -52,7 +58,23 @@ public class Spawner : MonoBehaviour
         return spawnEnemies.Any(checkObj => checkObj && Vector3.Distance(checkObj.transform.position, positionToCheck) < 1.0f); //Checking Every pass of unit
     }
 
-    private ObjectType RandomObjectType
+    private ObjectType RandomObjectType()
+    {
+        float randomChoice = Random.value;
+        if(randomChoice <= EnemyProbability)
+        {
+            return ObjectType.Enemy;
+        }
+        else if(randomChoice <= (EnemyProbability + BigEnemyProbability))
+        {
+            return ObjectType.BigEnemy;
+        }
+        else
+        {
+            return ObjectType.SmallEnemy;
+        }
+
+    }
 
     private void SpawnEnemy()
     {
@@ -78,7 +100,27 @@ public class Spawner : MonoBehaviour
 
         if (validPosfound)
         {
-             ObjectField
+            ObjectType objectType = RandomObjectType();
+            GameObject gameObject = Instantiate(Spawned[(int)objectType], spawnPos, Quaternion.identity);
+            spawnEnemies.Add(gameObject);
+
+            //Enemy Destroyed on their after a set time
+            if(objectType != ObjectType.Enemy)
+            {
+                StartCoroutine(DestroyObjectsAfterTime(gameObject, Cooldown));
+            }
+        }
+    }
+
+    private IEnumerator DestroyObjectsAfterTime(GameObject gameObject, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (gameObject)
+        {
+            spawnEnemies.Remove(gameObject);
+            validSpawnPoints.Add(gameObject.transform.position);
+            Destroy(gameObject);
         }
     }
 
