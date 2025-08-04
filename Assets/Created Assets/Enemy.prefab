@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5203790095580368706}
   - component: {fileID: 6305206092853133436}
   - component: {fileID: -4922722751518025783}
+  - component: {fileID: 8340111662584777078}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c2372af5953f54e95bcc20624c0e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointParent: {fileID: 0}
+  waypointParent: {fileID: 5182509139177235814, guid: 62d65169a8a378d4897a8e7f61941820, type: 3}
   moveSpeed: 2
   waitTime: 2
   loopWayPoints: 1
@@ -170,3 +171,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0037702024, y: -0.060323298}
   m_Size: {x: 0.40430743, y: 0.8793534}
   m_Direction: 0
+--- !u!114 &8340111662584777078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706062398990871742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e107f48a700627438cd578cbdb43ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5683602706157190075, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
+  enemy: {fileID: 4595515205577665893}
+  chaseSpeed: 2
+  jumpForce: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
