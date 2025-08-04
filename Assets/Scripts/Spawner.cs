@@ -12,19 +12,40 @@ public class Spawner : MonoBehaviour
    
     public Tilemap Road;
     public GameObject[] Spawned; //0 - enemy, 1 - small, 2 - big
+
+    //Note to self: Rate is too fast, pls change it.
     public float BigEnemyProbability = 0.2f; //20% chance
     public float EnemyProbability = 0.1f;
+
     private List<Vector3> validSpawnPoints = new List<Vector3>();
     private List<GameObject> spawnEnemies = new List<GameObject>(); // Only have 1 enemy
+
+    //Variables for Checking
     private bool isSpawning = false;
     public float Cooldown = 0.5f;
-    public int maxObjects = 5;//Limit of Enemies
+    public int maxObjects = 5; //Limit of Enemy Appearances
+
+    /************************************************************
+    
+    ======= Version 1.0 (m/d/y, 08/04/2025) ========
+    FEATURES
+    ================================================
+    - Added 2 more object Types in enum.
+    - Changed gameObject needing a Sprite Renderer to having the enemy Spawn on a TileMap, Less hassle on hadling the spawn points.
+    ================================================
+    BUGS
+    ================================================
+    - Small and Big enemy appearing and disappearing in an unusually fast rate.
+    - Spawning outside the Road tilemap
+    
+    Author: Dani
+    ************************************************************/
 
 
     void Start()
     {
         ValidCells();
-        StartCoroutine(SpawnObjectsifNeeded());
+        StartCoroutine(SpawnObjectsifNeeded()); //KERATINE??, charot
     }
 
     void Update()
@@ -44,11 +65,13 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnObjectsifNeeded()
     {
         isSpawning = true;
+
         while (ActiveObjectCount() < maxObjects)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(Cooldown);
         }
+        
         isSpawning = false;
     }
 
