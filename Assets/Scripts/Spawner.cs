@@ -31,12 +31,7 @@ public class Spawner : MonoBehaviour
     FEATURES
     ================================================
     - Added 2 more object Types in enum.
-    - Changed gameObject needing a Sprite Renderer to having the enemy Spawn on a TileMap, Less hassle on hadling the spawn points.
-    ================================================
-    BUGS
-    ================================================
-    - Small and Big enemy appearing and disappearing in an unusually fast rate.
-    - Spawning outside the Road tilemap
+    - Changed gameObject needing a Sprite Renderer to having the enemy Spawn on a TileMap, Less hassle on handling the spawn points.
     
     Author: Dani
     ************************************************************/
@@ -45,7 +40,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         ValidCells();
-        StartCoroutine(SpawnObjectsifNeeded()); //KERATINE??, charot
+        StartCoroutine(SpawnObjectsifNeeded());
     }
 
     void Update()
