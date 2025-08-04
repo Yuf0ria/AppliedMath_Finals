@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     **/
 
     //Enemy Health
-    public int maxHealth = 3;
+    public int maxHealth = 1;
     private int currentHealth;
     private SpriteRenderer spriteRenderer;//When hit turn red
     //og Color and color when Hit
@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         StartCoroutine(FlashWhite());
-        if (currentHealth >= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

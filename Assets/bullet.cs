@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public int bulletDmg = 1;
 
