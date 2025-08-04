@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -17,9 +19,21 @@ public class Enemy : MonoBehaviour
     
     **/
 
+    //Enemy Health
+    public int maxHealth = 3;
+    private int currentHealth;
+    private SpriteRenderer spriteRenderer;//When hit turn red
+    //og Color and color when Hit
+    private Color ogColor;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
+        ogColor = spriteRenderer.color;
     }
 
     void Update()
@@ -44,17 +58,20 @@ public class Enemy : MonoBehaviour
             //if player above
             RaycastHit2D platformAbove = Physics2D.Raycast(transform.position, Vector2.up, 3f, groundLayer);
             //Conditions for Jumping
-            if (!groundInFront.collider && !gapAhead.collider) {
+            if (!groundInFront.collider && !gapAhead.collider)
+            {
                 shouldJump = true;
             }
-            else if (isPlayerAbove && platformAbove.collider) {
+            else if (isPlayerAbove && platformAbove.collider)
+            {
                 shouldJump = true;
             }
         }
 
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (isGrounded && shouldJump)
         {
             shouldJump = false;
@@ -63,5 +80,27 @@ public class Enemy : MonoBehaviour
             //rigidbody
             rb.AddForce(new Vector2(JumpDirection.x, jumpForce), ForceMode2D.Impulse); // Applies force physics
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        StartCoroutine(FlashWhite());
+        if (currentHealth >= 0)
+        {
+            Die();
+        }
+    }
+
+    private IEnumerator FlashWhite()
+    {
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = ogColor;
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }
