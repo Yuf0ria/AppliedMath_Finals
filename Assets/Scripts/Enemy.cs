@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player,enemy;
+    //call variables
+    public Transform player;
     public float chaseSpeed = 2f;
-    public float jumpForce = 2f;
     public LayerMask groundLayer;
-
+    //Rigidbody of enemy
     private Rigidbody2D rb;
     private bool isGrounded;
+
     /****
     =============
-    Old Script, Not Deleting for Documentation Purposes, InCase I need it for a diff game.
+    Currently used for Enemy AI, connected Scripts:
+    - Waypoint
     =============
-    
     **/
 
 
@@ -41,11 +43,10 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collission)
     {
-        //Enemy enemy = collission.GetComponent<Enemy>();
         if (collission.tag == "Bullet")
         {
             Destroy(gameObject);
-            Debug.Log("Dead");
+            //Debug.Log("Dead");
         }
     }
 }

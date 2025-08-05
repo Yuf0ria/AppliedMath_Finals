@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5284670731240509809}
   - component: {fileID: 7272009557320515928}
   - component: {fileID: 2895760110674937608}
-  - component: {fileID: 3191533238605166524}
   m_Layer: 0
   m_Name: Bread_palceholder
   m_TagString: Bullet
@@ -78,8 +77,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: -1207689824, guid: 611ba260948b05146be2e7afb2c2a07a, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -562539663, guid: 611ba260948b05146be2e7afb2c2a07a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,17 +150,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005720192, y: -0.018364806}
-  m_Radius: 0.043872446
---- !u!114 &3191533238605166524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2209315973029381891}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d646d4c6d68a44286a833ccdeb2fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: -0.0043910667, y: -0.012927499}
+  m_Radius: 0.032031182

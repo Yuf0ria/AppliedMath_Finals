@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8340111662584777078}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706062398990871742}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -184,9 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5683602706157190075, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
-  enemy: {fileID: 4595515205577665893}
   chaseSpeed: 2
-  jumpForce: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  text: {fileID: 0}

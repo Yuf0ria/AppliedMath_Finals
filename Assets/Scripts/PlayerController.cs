@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
         // Handle horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
         //Conditions to flip Player
-        if (moveInput > 0 && transform.localScale.x < 0 ||
-            moveInput < 0 && transform.localScale.x > 0)
+        if (moveInput > 0 && transform.localScale.x > 0 ||
+            moveInput < 0 && transform.localScale.x < 0)
         {
             Flip();
         }
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        flipPlayer *= -1;
+        flipPlayer *= 1;
         transform.localScale = new Vector3 (transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 }

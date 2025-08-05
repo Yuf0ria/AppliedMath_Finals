@@ -26,11 +26,10 @@ public class Spawner : MonoBehaviour
 
     /************************************************************
     
-    ======= Version 1.0 (m/d/y, 08/04/2025) ========
+    ======= Version 1.0 (m/d/y, 08/05/2025) ========
     FEATURES
     ================================================
-    - Added 2 more object Types in enum.
-    - Changed gameObject needing a Sprite Renderer to having the enemy Spawn on a TileMap, Less hassle on handling the spawn points.
+    - didn't use variable such as power-ups but they're here just don't have the time to implement
     
     Author: Dani
     ************************************************************/

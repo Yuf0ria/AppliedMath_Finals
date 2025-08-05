@@ -1,28 +1,27 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerShoot : MonoBehaviour
 {
     //Shoot using Mouse
-    public GameObject breadprefab;
-    //public Transform shootingPoint; //enemy
-    public float bulletSpeed = 50f;
-
+    public GameObject bulletprefab;
+    public float speed = 50.0f;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))//Left Click;
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
     }
-    void Shoot()
-    {
-        
-        //MousePos
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 ShootDirection = (mousePosition - transform.position).normalized; // gets direction from player to mouse
+    void Shoot() {
 
-        GameObject bullet = Instantiate(breadprefab, transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(ShootDirection.x, ShootDirection.y) * bulletSpeed;
-        Destroy(bullet, 2f);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 shootDirection = (mousePosition - transform.position).normalized;
+        GameObject bullet = Instantiate(bulletprefab, transform.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2 (shootDirection.x, shootDirection.y) * speed;
+        //transform.position += transform.right * Time.deltaTime * speed;
+
+        Destroy(bullet, 4f);
     }
 }
