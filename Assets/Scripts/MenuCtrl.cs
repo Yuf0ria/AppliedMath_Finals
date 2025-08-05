@@ -8,17 +8,6 @@ public class MenuCtrl : MonoBehaviour
     //GameObjects
     public GameObject StartMenu, Game, Pause, Countdown;
     public static bool gameIsPaused;
-    public static bool load;
-    //void Start()
-    //{
-    //    if (Istart == true) {
-    //        StartMenu.SetActive(true);
-    //        Game.SetActive(false);
-    //        Pause.SetActive(false);
-    //        Countdown.SetActive(false);
-    //        Istart = false;
-    //    }
-    //}
 
     // Update is called once per frame
     void Update()
@@ -30,15 +19,6 @@ public class MenuCtrl : MonoBehaviour
             gameIsPaused = !gameIsPaused;
             PauseGame();
         }
-        if (load == false)
-        {
-            StartMenu.SetActive(false);
-            Game.SetActive(true);
-            Countdown.SetActive(true);
-            Pause.SetActive(true);
-            load = false;
-        }
-
     }
 
     public void PauseGame()
@@ -53,6 +33,12 @@ public class MenuCtrl : MonoBehaviour
             Time.timeScale = 1;
             Pause.SetActive(false);
         }
+    }
+
+    public void PauseOnClick()//Clicking ContinueBTN
+    {
+        Time.timeScale = 1;
+        Pause.SetActive(false);
     }
 
     public void StartClick()
@@ -73,11 +59,6 @@ public class MenuCtrl : MonoBehaviour
 
     public void ResetGame()
     {
-        load = true;
-        if(load == true)
-        {
-            load = false;
-            SceneManager.LoadScene("SampleScene");
-        }
+        SceneManager.LoadScene("SampleScene");
     }
 }
