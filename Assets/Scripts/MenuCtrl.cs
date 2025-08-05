@@ -17,6 +17,7 @@ public class MenuCtrl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameIsPaused = !gameIsPaused;
+            SoundEffectManager.Play("Pause");
             PauseGame();
         }
     }
@@ -38,11 +39,13 @@ public class MenuCtrl : MonoBehaviour
     public void PauseOnClick()//Clicking ContinueBTN
     {
         Time.timeScale = 1;
+        SoundEffectManager.Play("Pause");
         Pause.SetActive(false);
     }
 
     public void StartClick()
     {
+        SoundEffectManager.Play("Start");
         Game.SetActive(true);
         Countdown.SetActive(true);
         StartMenu.SetActive(false);

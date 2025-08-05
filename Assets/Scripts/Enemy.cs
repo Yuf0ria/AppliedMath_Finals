@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
     {
         if (collission.tag == "Bullet")
         {
+            SoundEffectManager.Play("Hit");
             Destroy(gameObject);
             //Debug.Log("Dead");
         }

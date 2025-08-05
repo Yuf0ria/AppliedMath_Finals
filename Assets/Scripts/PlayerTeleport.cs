@@ -12,6 +12,7 @@ public class PlayerTeleport : MonoBehaviour
             if(currentTeleporter != null)
             {
                 //Gets Script and position
+                SoundEffectManager.Play("Teleport");
                 transform.position = currentTeleporter.GetComponent<Teleportation>().GetDestination().position;
             }
         }
