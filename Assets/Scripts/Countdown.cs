@@ -30,6 +30,7 @@ public class Countdown : MonoBehaviour
     void GameOverScreen()
     {
         SoundEffectManager.Play("GameOver");
+        MusicManager.PauseBackgroundMusic();
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
     }

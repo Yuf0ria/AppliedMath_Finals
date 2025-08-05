@@ -64,6 +64,7 @@ public class MenuCtrl : MonoBehaviour
     public void ResetGame()
     {
         SoundEffectManager.Play("Restart");
+        MusicManager.PlayBackgroundMusic(true);
         SceneManager.LoadScene("SampleScene");
     }
 }
