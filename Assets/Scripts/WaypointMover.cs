@@ -24,10 +24,7 @@ public class WaypointMover : MonoBehaviour
 
     void Update()
     {
-        // if (PauseController.IsGamePause || isWaiting)
-        // {
-        //     return; //stops when paused
-        // } 
+
         MoveToWayPoint();
     }
 

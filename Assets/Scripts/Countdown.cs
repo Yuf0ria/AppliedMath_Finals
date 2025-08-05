@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Countdown : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
     [SerializeField] float remaingTime; //serialize so it shows up
     HitCount count;
+    //variables for game over screen
+    public GameObject gameOverScreen;
 
     void Update()
     {
@@ -17,10 +20,16 @@ public class Countdown : MonoBehaviour
         else if (remaingTime < 0)
         {
             remaingTime = 0;
-            //setactive gameover screen code
+            GameOverScreen();
         }
         int minutes = Mathf.FloorToInt(remaingTime / 60);
         int seconds = Mathf.FloorToInt(remaingTime % 60);
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+    //included GameOverScreen Here
+    void GameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 }
