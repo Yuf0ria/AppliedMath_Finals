@@ -56,12 +56,14 @@ public class MenuCtrl : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        SoundEffectManager.Play("Exit");
         Application.Quit();
     }
 
 
     public void ResetGame()
     {
+        SoundEffectManager.Play("Restart");
         SceneManager.LoadScene("SampleScene");
     }
 }
