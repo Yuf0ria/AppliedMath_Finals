@@ -693,25 +693,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108936083}
   m_CullTransparentMesh: 1
---- !u!1 &119129745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8781938032591978165, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
-  m_PrefabInstance: {fileID: 1044889554554964219}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &119129750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119129745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d5f03366ddbb043bee845b8a5f7c7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1319493688}
-  gameover: {fileID: 1605415842}
 --- !u!1 &131030877
 GameObject:
   m_ObjectHideFlags: 3
@@ -9095,17 +9076,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272683435}
   m_CullTransparentMesh: 1
---- !u!114 &1319493688 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6812232692109142474, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
-  m_PrefabInstance: {fileID: 1044889554554964219}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1320254364
 GameObject:
   m_ObjectHideFlags: 0
@@ -13705,11 +13675,11 @@ MonoBehaviour:
   Road: {fileID: 1016902250}
   Spawned:
   - {fileID: 1706062398990871742, guid: f7e2299861c23864896f462a7146cf86, type: 3}
-  - {fileID: 8515174203471911407, guid: dbcd57d694b6a944aa08bbb20225f073, type: 3}
-  - {fileID: 8239766131833937665, guid: ea7d4ff7ff14d184d8e5e48173713974, type: 3}
+  - {fileID: 1706062398990871742, guid: f7e2299861c23864896f462a7146cf86, type: 3}
+  - {fileID: 1706062398990871742, guid: f7e2299861c23864896f462a7146cf86, type: 3}
   BigEnemyProbability: 0.2
-  EnemyProbability: 0.1
-  Cooldown: 0.5
+  EnemyProbability: 0.3
+  Cooldown: 1
   maxObjects: 5
 --- !u!1 &2143492806
 GameObject:
@@ -14028,16 +13998,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8475694957784471783, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
+      propertyPath: gameover
+      value: 
+      objectReference: {fileID: 1605415842}
     m_RemovedComponents:
     - {fileID: 7920199693013127190, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
     m_RemovedGameObjects:
     - {fileID: 8312140797360459244, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
     - {fileID: -8232637014453358052, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8781938032591978165, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 119129750}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76aac79d7ff8f1f408427db63de8fb9e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
